@@ -45,6 +45,12 @@ FlutterRunnerProductConfiguration::FlutterRunnerProductConfiguration(
       use_legacy_renderer_ = val.GetBool();
   }
 #endif
+  if (document.HasMember("observatory_port")) {
+    auto& val = document["observatory_port"];
+    if (val.IsUint()) {
+      observatory_port_ = val.GetInt();
+    }
+  }
 }
 
 }  // namespace flutter_runner

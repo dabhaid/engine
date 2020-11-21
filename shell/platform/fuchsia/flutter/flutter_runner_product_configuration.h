@@ -21,6 +21,7 @@ class FlutterRunnerProductConfiguration {
 #if defined(LEGACY_FUCHSIA_EMBEDDER)
   bool use_legacy_renderer() { return use_legacy_renderer_; }
 #endif
+  uint32_t get_observatory_port() { return observatory_port_; }
 
  private:
   fml::TimeDelta vsync_offset_ = fml::TimeDelta::Zero();
@@ -30,6 +31,7 @@ class FlutterRunnerProductConfiguration {
 #if defined(LEGACY_FUCHSIA_EMBEDDER)
   bool use_legacy_renderer_ = true;
 #endif
+  uint64_t observatory_port_ = 0;
 };
 
 }  // namespace flutter_runner

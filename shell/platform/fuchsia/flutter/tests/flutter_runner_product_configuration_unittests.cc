@@ -110,4 +110,26 @@ TEST_F(FlutterRunnerProductConfigurationTest, MissingInterceptAllInput) {
             product_config.get_intercept_all_input());
 }
 
+TEST_F(FlutterRunnerProductConfigurationTest, ValidObservatoryPort) {
+  const std::string json_string = "{\"observatory_port\" : 48790} ";
+  const uint64_t expected_fixed_observatory_port = 48790;
+
+  FlutterRunnerProductConfiguration product_config =
+      FlutterRunnerProductConfiguration(json_string);
+
+  EXPECT_EQ(expected_fixed_observatory_port,
+            product_config.get_observatory_port());
+}
+
+TEST_F(FlutterRunnerProductConfigurationTest, MissingObservatoryPort) {
+  const std::string json_string = "{ \"observatory_port\" :  } ";
+  // observatory port should default to 0, resulting in random assignment
+  const uint64_t expected_default_observatory_port = 0;
+
+  FlutterRunnerProductConfiguration product_config =
+      FlutterRunnerProductConfiguration(json_string);
+  EXPECT_EQ(expected_default_observatory_port,
+            product_config.get_observatory_port());
+}
+
 }  // namespace flutter_runner_test

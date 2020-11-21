@@ -272,7 +272,8 @@ Engine::Engine(Delegate& delegate,
     return std::make_unique<flutter::Rasterizer>(shell);
   };
 #endif
-
+  // Modify settings if a port has been set via flutter_runner_config
+  settings.observatory_port = product_config.get_observatory_port();
   settings.root_isolate_create_callback =
       std::bind(&Engine::OnMainIsolateStart, this);
   settings.root_isolate_shutdown_callback =
